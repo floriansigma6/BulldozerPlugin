@@ -41,6 +41,7 @@ class Bulldozer(Script):
 				}
             }
         }"""
+	
 	def dozerCode(imodel):
 		code = """\n\n
 ;Bulldozer code start
@@ -64,11 +65,56 @@ M117 Starting model
 		delay = self.getSettingValueByKey("delay")
 		parts = self.getSettingValueByKey("parts")
 
+		index = 0
+		
+        RepeatedPart = ""
+        StartCod = 0
+        StopCod = 0
+        g280x = 140;
+
+        for active_layer in data:
+            modified_gcode = ""
+            lines = active_layer.split("\n")
+
+            for line in lines:
+                if line.startswith("G280"):
+                    line = "G0 F15000 X" + str(g280x) + " Y6 Z2\nG280 ;position moved\n"
+                    g280x -= 30
+				
+                if 	line == ";End of Gcode":
+                    line = ""
+                    for i in range(parts-1): 	
+                        line += dozerCode(i)
+                        line += RepeatedPart
+                    line += dozerCode(parts-1)
+                    line += ";End of Gcode \n"
+                    StopCod=1
+					
+                if (StartCod==1) and (StopCod==0):
+                    RepeatedPart += line + "\n"
+					
+                if 	line == ";END_OF_HEADER":
+                    StartCod=1
+					
+                modified_gcode += line + "\n"
+
+            data[index] = modified_gcode
+            index += 1
+
+
 #        lcd_text = "M117 " + name + " layer: "
-        i = 0
-        for layer in data:
-			
-			i++
+#        i = 0
+#		
+#		g280x = 140; 	# any number of G280 commands will be 
+#		
+ #       for layer in data:
+	#		while -1 != layer.find("\nG280\n"):		
+	#			layer = layer.replace("\nG280\n", "\nG0 F15000 X" + str(g280x) + " Y6 Z2\nG280 ;position moved\n", 1)
+	#			g280x -= 30
+				
+			# the new coordinates of hirbunim - 140 and 110, to make them fall off when the part is pushed.
+		
+	#		i++
 #            display_text = lcd_text + str(i)
 #            layer_index = data.index(layer)
 #            lines = layer.split("\n")
