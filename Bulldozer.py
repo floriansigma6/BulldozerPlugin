@@ -20,7 +20,7 @@ class Bulldozer(Script):
             "name": "Bulldozer - Use print head to kick the model out of the printer",
             "key": "Bulldozer",
             "metadata": {},
-            "version": 1,
+            "version": 2,
             "settings":
             {
                 "delay":
