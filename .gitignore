@@ -1,4 +1,11 @@
-# Executables
-*.exe
-*.out
-*.app
+# all other plugins
+BQ_PauseAtHeight.py
+ChangeAtZ.py
+DisplayFilenameAndLayerOnLCD.py
+ExampleScript.py
+FilamentChange.py
+PauseAtHeight.py
+PauseAtHeightforRepetier.py
+PauseAtHeightRepRapFirmwareDuet.py
+SearchAndReplace.py
+Stretch.py
