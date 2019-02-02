@@ -2,12 +2,12 @@
 # Author:   Pavel Radzivilovsky
 # Date:     February 2, 2019
 
-# Description:  !!! Use at your own risk !!!
-#                This plugin creates gcode that can seriously damage your printer.
-#               Inserts code to push the print out of the printer, and restart the print of a new object.
-#               Can be used to automate production process of multiple objects. Never use unattended!
-#                The model must be centered horizontally and placed in the front 2/3 of the build plate.
-#                Tested with Ultimaker 3. And seriously, use at your own risk, this can break your printer. 
+## Description:  !!! Use at your own risk !!!
+##                This plugin creates gcode that can seriously damage your printer.
+##               Inserts code to push the print out of the printer, and restart the print of a new object.
+##               Can be used to automate production process of multiple objects. Never use unattended!
+##                The model must be centered horizontally and placed in the front 2/3 of the build plate.
+##                Tested with Ultimaker 3. And seriously, use at your own risk, this can break your printer. 
 
 from ..Script import Script
 
@@ -31,7 +31,7 @@ class Bulldozer(Script):
                     "type": "int",
                     "default_value": 20
                 },
-                "parts"
+                "parts":
                 {
                     "label": "Repeat",
                     "description": "Number of builds to perform",
