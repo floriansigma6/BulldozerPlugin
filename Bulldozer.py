@@ -42,7 +42,10 @@ class Bulldozer(Script):
             }
         }"""
     
-    def dozerCode(imodel):
+    def dozerCode(self, imodel):
+        delay = self.getSettingValueByKey("delay")
+        parts = self.getSettingValueByKey("parts")
+        
         code = """
 ;Bulldozer code start
 G0 F2000 Z150
@@ -51,22 +54,18 @@ G0 F2000 X105 Y210 Z150"""
 
         for m in range(delay):
             for s in range(6):
-                code += "G4 P10000\nM117 Cooling down, " + str(delay-m) + ":" + str(5-s) + "0\n"
+                code += "G4 P10000\nM117 Cooling down, " + str(delay-m-1) + ":" + str(5-s) + "0\n"
                 
         code += """M117 Lo and behold!\n
 G0 F2000 X105 Y210 Z5
 G0 F2000 X105 Y5 Z5   ; bulldozer
-M117 Starting model""" + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1 for 1-based numbers for human user, +1 coz starting next model after this one
-        
+M117 Starting model """ + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1 for 1-based numbers for human user, +1 coz starting next model after this one
+
         return code
-        
     
     def execute(self, data):
-        delay = self.getSettingValueByKey("delay")
         parts = self.getSettingValueByKey("parts")
-
         index = 0
-        
         RepeatedPart = ""
         StartCod = 0
         StopCod = 0
@@ -83,7 +82,7 @@ M117 Starting model""" + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1
                 
                 if line == ";End of Gcode":
                     line = ""
-                    for i in range(parts-1):     
+                    for i in range(parts-1):   
                         line += self.dozerCode(i)
                         line += RepeatedPart
                     line += self.dozerCode(parts-1)
