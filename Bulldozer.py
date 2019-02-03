@@ -59,7 +59,7 @@ G0 F2000 X105 Y210 Z150"""
         code += """M117 Lo and behold!\n
 G0 F2000 X105 Y210 Z5
 G0 F2000 X105 Y5 Z5   ; bulldozer
-M117 Starting model """ + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1 for 1-based numbers for human user, +1 coz starting next model after this one
+M117 Printing model """ + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1 for 1-based numbers for human user, +1 coz starting next model after this one
 
         return code
     
