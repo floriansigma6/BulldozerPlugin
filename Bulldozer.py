@@ -81,7 +81,7 @@ M117 Starting model""" + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1
                     line = "G0 F15000 X" + str(g280x) + " Y6 Z2\nG280 ;position moved\n"
                     g280x -= 30
                 
-                if     line == ";End of Gcode":
+                if line == ";End of Gcode":
                     line = ""
                     for i in range(parts-1):     
                         line += self.dozerCode(i)
