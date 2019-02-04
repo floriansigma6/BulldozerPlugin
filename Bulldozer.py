@@ -3,11 +3,11 @@
 # Date:     February 2, 2019
 
 ## Description:  !!! Use at your own risk !!!
-##                This plugin creates gcode that can seriously damage your printer.
+##               This plugin creates gcode that can seriously damage your printer.
 ##               Inserts code to push the print out of the printer, and restart the print of a new object.
 ##               Can be used to automate production process of multiple objects. Never use unattended!
-##                The model must be centered horizontally and placed in the front 2/3 of the build plate.
-##                Tested with Ultimaker 3. And seriously, use at your own risk, this can break your printer. 
+##               The model must be centered horizontally and placed in the front 2/3 of the build plate.
+##               Tested with Ultimaker 3. And seriously, use at your own risk, this can break your printer. 
 
 from ..Script import Script
 
@@ -17,7 +17,7 @@ class Bulldozer(Script):
 
     def getSettingDataString(self):
         return """{
-            "name": "Bulldozer - Use print head to kick the model out of the printer",
+            "name": "Bulldozer - Kick the model out of the printer",
             "key": "Bulldozer",
             "metadata": {},
             "version": 2,
