@@ -56,9 +56,10 @@ G0 F2000 X105 Y210 Z150"""
             for s in range(6):
                 code += "G4 P10000\nM117 Cooling down, " + str(delay-m-1) + ":" + str(5-s) + "0\n"
                 
-        code += """M117 Lo and behold!\n
+        code += """M117 Behold!\n
 G0 F2000 X105 Y210 Z5
 G0 F2000 X105 Y5 Z5   ; bulldozer
+G4 P10000
 M117 Printing model """ + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +1 for 1-based numbers for human user, +1 coz starting next model after this one
 
         return code
@@ -69,7 +70,7 @@ M117 Printing model """ + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +
         RepeatedPart = ""
         StartCod = 0
         StopCod = 0
-        g280x = 140;
+        g280x = 110;
 
         for active_layer in data:
             modified_gcode = ""
@@ -78,7 +79,7 @@ M117 Printing model """ + str(imodel+1+1) + "/" + str(parts) + "\n\n"        # +
             for line in lines:
                 if line.startswith("G280"):
                     line = "G0 F15000 X" + str(g280x) + " Y6 Z2\nG280 ;position moved\n"
-                    g280x -= 30
+                    g280x += 30
                 
                 if line == ";End of Gcode":
                     line = ""
