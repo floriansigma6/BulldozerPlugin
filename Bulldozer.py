@@ -35,7 +35,7 @@ class Bulldozer(Script):
                 {
                     "label": "Repeat",
                     "description": "Number of builds to perform",
-					"unit": "prints",
+                    "unit": "prints",
                     "type": "int",
                     "default_value": 5                    
                 }
@@ -78,7 +78,7 @@ M117 Printing model """ + str(imodel+1+1) + "/" + str(parts) + "\n" + "M140 S" +
             lines = active_layer.split("\n")
 
             for line in lines:
-                if line.startswith(";BUILD_PLATE.INITIAL_TEMPERATURE:")
+                if line.startswith(";BUILD_PLATE.INITIAL_TEMPERATURE:"):
                     initialBedTemperature_C = int(line[-2:])
                     
                 if line.startswith("G280"):
