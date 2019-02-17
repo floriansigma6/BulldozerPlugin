@@ -59,8 +59,9 @@ G0 F2000 X105 Y210 Z150"""
         code += """M117 Behold!\n
 G0 F2000 X105 Y210 Z5
 G0 F2000 X105 Y5 Z5   ; bulldozer
-G4 P10000
-M117 Printing model """ + str(imodel+1+1) + "/" + str(parts) + "\n" + "M190 S" + str(bedtemp) + "\n\n"       # +1 for 1-based numbers for human user, +1 coz starting next model after this one
+G4 P10000\n\n"""
+        if imodel+1 < parts :
+            code += "M117 Printing model " + str(imodel+1+1) + "/" + str(parts) + "\nM190 S" + str(bedtemp) + "\n\n"       # +1 for 1-based numbers for human user, +1 coz starting next model after this one
 
         return code
     
