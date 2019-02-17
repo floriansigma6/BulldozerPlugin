@@ -84,7 +84,7 @@ G4 P10000\n\n"""
                     
                 if line.startswith("G280"):
                     line = "G0 F15000 X" + str(g280x) + " Y6 Z2\nG280 ;position moved\n"
-                    g280x += 30
+                    g280x += 15
                 
                 if line == ";End of Gcode":
                     line = ""
