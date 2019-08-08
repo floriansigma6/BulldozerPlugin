@@ -82,7 +82,7 @@ G4 P10000\n\n"""
                 if line.startswith(";BUILD_PLATE.INITIAL_TEMPERATURE:"):
                     initialBedTemperature_C = int(line[-2:])
                     
-                if line.startswith("G280") and not line.startswith("G280 S1"):
+                if line.startswith("G280"):
                     line = "G0 F15000 X" + str(g280x) + " Y6 Z2\nG280 ;position moved\n"
                     g280x += 15
                 
