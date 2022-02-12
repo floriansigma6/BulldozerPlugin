@@ -10,5 +10,5 @@ To install, copy the Bulldozer.py file under [cura directory]\plugins\PostProces
 
 Video instructions here: https://www.youtube.com/watch?v=XqR-0DKb9Ds
 
-This version is forked from Pavel's initiale release:
+This version is forked by SIGMASIX from Pavel's initiale release:
 An option was added to be able to set at what height the print head will do the bulldozer.
