@@ -9,3 +9,6 @@ Warning!! This has great potential to damage your printer. Use only if there's n
 To install, copy the Bulldozer.py file under [cura directory]\plugins\PostProcessingPlugin\scripts.
 
 Video instructions here: https://www.youtube.com/watch?v=XqR-0DKb9Ds
+
+This version is forked from Pavel's initiale release:
+An option was added to be able to set at what height the print head will do the bulldozer.
