@@ -38,6 +38,14 @@ class Bulldozer(Script):
                     "unit": "prints",
                     "type": "int",
                     "default_value": 5                    
+                },
+                "zheight":
+                {
+                    "label": "Noozle height",
+                    "description": "The height of the noozle when performing the bulldozer",
+                    "unit": "mm",
+                    "type": "int",
+                    "default_value": 5
                 }
             }
         }"""
@@ -45,21 +53,27 @@ class Bulldozer(Script):
     def dozerCode(self, imodel, bedtemp):
         delay = self.getSettingValueByKey("delay")
         parts = self.getSettingValueByKey("parts")
+        zheight = self.getSettingValueByKey("zheight")
         
         code = """
 ;Bulldozer code start
 G0 F2000 Z150
 G0 F2000 Y210 Z150
-G0 F2000 X105 Y210 Z150"""
+G0 F2000 X105 Y210 Z150\n\n"""
 
         for m in range(delay):
             for s in range(6):
                 code += "G4 P10000\nM117 Cooling down, " + str(delay-m-1) + ":" + str(5-s) + "0\n"
                 
         code += """M117 Behold!\n
-G0 F2000 X105 Y210 Z5
-G0 F2000 X105 Y5 Z5   ; bulldozer
+G0 F2000 X105 Y210 Z"""
+        code +=str(zheight)
+        code +="""
+G0 F2000 X105 Y5 Z"""
+        code +=str(zheight)
+        code +="""; bulldozer
 G4 P10000\n\n"""
+
         if imodel+1 < parts :
             code += "M117 Printing model " + str(imodel+1+1) + "/" + str(parts) + "\nM190 S" + str(bedtemp) + "\n\n"       # +1 for 1-based numbers for human user, +1 coz starting next model after this one
 
